@@ -34,7 +34,7 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 
 const items = [
     { title: "Events", url: "/admin/events", icon: Store },
-    { title: "Event Categories", url: "/admin/event-categories", icon: Tag },
+    { title: "Event Categories", url: "/admin/event-categories", icon: Tag }
 ]
 
 export function DashboardSidebar() {

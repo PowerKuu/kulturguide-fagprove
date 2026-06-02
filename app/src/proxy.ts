@@ -6,7 +6,6 @@ export const ALLOWED_ORIGINS = [""]
 export default async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl
 
-
     if (pathname.startsWith("/admin")) {
         const isAdminAuthorized = await adminGuard()
 
