@@ -20,7 +20,7 @@ export default async function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="no" suppressHydrationWarning>
+        <html lang="no" data-scroll-behavior="smooth" suppressHydrationWarning>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
                     {children}
