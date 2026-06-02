@@ -142,7 +142,7 @@ export function EditEventDialog({
                             placeholder="Enter a description for the event."
                             value={description ?? ""}
                             onChange={(e) => onDescriptionChange(e.target.value)}
-                            className="h-16 resize-none font-mono text-xs"
+                            className="h-28 font-mono text-xs max-w-full wrap-anywhere"
                         />
                     </div>
 
