@@ -3,9 +3,7 @@ import { Button } from "@/components/ui/button"
 import AppLogo from "../AppLogo"
 
 export function SiteHeader() {
-    const navLinks = [
-        { href: `/contact`, label: "Kontakt" },
-    ]
+    const navLinks = [{ href: `/contact`, label: "Kontakt" }]
 
     return (
         <header className="fixed top-0 inset-x-0 z-50 border-b border-border/40 bg-background/75 backdrop-blur-md">
@@ -16,8 +14,12 @@ export function SiteHeader() {
                 </Link>
 
                 <nav className="flex items-center gap-2 sm:gap-3">
-                                        {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} className="hover:text-foreground transition-colors text-sm">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="hover:text-foreground transition-colors text-sm"
+                        >
                             {link.label}
                         </Link>
                     ))}

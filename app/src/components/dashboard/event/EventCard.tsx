@@ -17,7 +17,7 @@ export default function EventCard({
     onEditClick,
     onDeleteClick
 }: {
-    event: Event,
+    event: Event
     category: EventCategory
     firstImageId?: string
     onEditClick: () => void

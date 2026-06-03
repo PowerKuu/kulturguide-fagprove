@@ -13,7 +13,7 @@ export default function Home() {
     const [featuredEvents, setFeaturedEvents] = useState<(Event & { category: EventCategory })[]>([])
 
     useEffect(() => {
-        getFeaturedEvents().then(setFeaturedEvents) 
+        getFeaturedEvents().then(setFeaturedEvents)
     }, [])
 
     return (
@@ -43,17 +43,20 @@ export default function Home() {
 
             <div className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold">Utvalgte arrangementer</h2>
-                {
-                    featuredEvents.length === 0 ? (
-                        <p className="text-muted-foreground">Ingen utvalgte arrangementer for øyeblikket.</p>
-                    ) : (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {featuredEvents.map(event => (
-                                <EventCard key={event.id} event={event} category={event.category} firstImageId={event.mediaIds[0]} />
-                            ))}
-                        </div>
-                    )
-                }
+                {featuredEvents.length === 0 ? (
+                    <p className="text-muted-foreground">Ingen utvalgte arrangementer for øyeblikket.</p>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {featuredEvents.map((event) => (
+                            <EventCard
+                                key={event.id}
+                                event={event}
+                                category={event.category}
+                                firstImageId={event.mediaIds[0]}
+                            />
+                        ))}
+                    </div>
+                )}
                 <Link href="/events">
                     <Button variant="outline">
                         Se alle arrangementer

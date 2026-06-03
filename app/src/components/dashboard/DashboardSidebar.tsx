@@ -41,7 +41,7 @@ export function DashboardSidebar() {
     const pathname = usePathname()
     const router = useRouter()
     const { data: session } = useSession()
-    
+
     async function handleLogout() {
         await authClient.signOut()
         router.push("/admin/auth/login")

@@ -7,5 +7,4 @@ export async function getFileAlt(id: string) {
         where: { id }
     })
     return file?.alt || ""
-    
 }

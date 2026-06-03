@@ -213,7 +213,12 @@ export function EditEventDialog({
                     <div className="space-y-1.5">
                         <Label>Images</Label>
                         <p>Alt tag will be the file name!</p>
-                        <Input type="file" onChange={handleImageUpload} accept="image/*" className="font-mono text-xs" />
+                        <Input
+                            type="file"
+                            onChange={handleImageUpload}
+                            accept="image/*"
+                            className="font-mono text-xs"
+                        />
                         <div className="grid grid-cols-2 gap-2">
                             {imageIds.map((id) => (
                                 <div key={id} className="relative w-full h-40">

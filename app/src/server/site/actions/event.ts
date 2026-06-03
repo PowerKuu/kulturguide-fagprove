@@ -33,7 +33,7 @@ export async function getEvent(id: string) {
     return event
 }
 
-export async function getFilteredEvents({ search, categoryId }: { search?: string, categoryId?: string }) {
+export async function getFilteredEvents({ search, categoryId }: { search?: string; categoryId?: string }) {
     const MAX_SEARCH_DISTANCE = 1
 
     const orderByParts: Prisma.Sql[] = []

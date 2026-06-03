@@ -14,7 +14,6 @@ export function EditEventCategoryDialog({
     open,
     onOpenChange,
 
-
     name,
     onNameChange,
 
@@ -32,14 +31,15 @@ export function EditEventCategoryDialog({
     onCreateClick: () => void
     error?: string
 }) {
-    
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{eventCategoryId ? "Edit Event Category" : "Create Event Category"}</DialogTitle>
                     <DialogDescription>
-                        {eventCategoryId ? "Make changes to the event category and click save when you're done." : "Fill out the form below to create a new event category."}
+                        {eventCategoryId
+                            ? "Make changes to the event category and click save when you're done."
+                            : "Fill out the form below to create a new event category."}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -57,7 +57,7 @@ export function EditEventCategoryDialog({
                     {error && <p className="text-sm text-destructive">{error}</p>}
 
                     <Button onClick={onCreateClick} className="w-full">
-                       {eventCategoryId ? "Save Changes" : "Create Event Category"}
+                        {eventCategoryId ? "Save Changes" : "Create Event Category"}
                     </Button>
                 </div>
             </DialogContent>

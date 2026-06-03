@@ -3,7 +3,7 @@
 import { EventHeader } from "@/components/dashboard/event/EventHeader"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import {  Event, EventCategory } from "@/prisma/client"
+import { Event, EventCategory } from "@/prisma/client"
 import { createEvent, deleteEvent, getEvents, updateEvent } from "@/server/admin/actions/event"
 import EventCard from "@/components/dashboard/event/EventCard"
 import { getEventCategories } from "@/server/admin/actions/eventCategory"
@@ -24,7 +24,7 @@ export default function Events() {
     const [editingEventDescription, setEditingEventDescription] = useState<string>()
     const [editingEventDate, setEditingEventDate] = useState<string>()
     const [editingEventLocation, setEditingEventLocation] = useState<string>()
-    const [editingEventPrice, setEditingEventPrice] = useState<string >()
+    const [editingEventPrice, setEditingEventPrice] = useState<string>()
     const [editingEventImageIds, setEditingEventImageIds] = useState<string[]>([])
 
     useEffect(() => {
@@ -36,9 +36,15 @@ export default function Events() {
         const CreateEventSchema = z.object({
             title: z.string().nonempty("Title is required"),
             description: z.string().nonempty("Description is required"),
-            startDate: z.string().nonempty("Date is required").transform((value) => new Date(value)),
+            startDate: z
+                .string()
+                .nonempty("Date is required")
+                .transform((value) => new Date(value)),
             location: z.string().nonempty("Location is required"),
-            price: z.string().nonempty("Price is required").transform((value) => parseFloat(value)),
+            price: z
+                .string()
+                .nonempty("Price is required")
+                .transform((value) => parseFloat(value)),
             categoryId: z.string().nonempty("Category is required"),
             featured: z.boolean(),
             mediaIds: z.array(z.string()).min(1, "At least one image is required")
@@ -65,15 +71,14 @@ export default function Events() {
         if (editingEventId) {
             await updateEvent(editingEventId, {
                 ...eventData,
-                category: {connect: { id: categoryId } }
+                category: { connect: { id: categoryId } }
             })
         } else {
-             await createEvent({
+            await createEvent({
                 ...eventData,
-                category: {connect: { id: categoryId } }
+                category: { connect: { id: categoryId } }
             })
         }
-        
 
         const updatedEvents = await getEvents()
         setEvents(updatedEvents)
@@ -89,68 +94,77 @@ export default function Events() {
         setEditingEventCategoryId("")
         setEditingEventImageIds([])
     }
-    
+
     async function handleDeleteEvent(id: string) {
         await deleteEvent(id)
         const updatedEvents = await getEvents()
         setEvents(updatedEvents)
     }
 
-    return <div className="space-y-6">
-        <EventHeader onCreateClick={() => { 
-            setEditingEventId(undefined) 
-            setEditingEventTitle("")
-            setEditingEventDescription("")
-            setEditingEventFeatured(false)
-            setEditingEventDate("")
-            setEditingEventLocation("")
-            setEditingEventPrice("")
-            setEditingEventCategoryId("")
-            setEditingEventImageIds([])
-            setIsEditDialogOpen(true) 
-        }} isLoading={false} />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {events.map((event) => (
-                <EventCard key={event.id} event={event} category={event.category} firstImageId={event.mediaIds?.[0]} onEditClick={() => {
-                    setEditingEventId(event.id)
-                    setEditingEventTitle(event.title)
-                    setEditingEventDescription(event.description || "")
-                    setEditingEventFeatured(event.featured)
-                    setEditingEventDate(event.startDate.toISOString().slice(0, 16))
-                    setEditingEventLocation(event.location)
-                    setEditingEventPrice(event.price.toString())
-                    setEditingEventCategoryId(event.categoryId)
-                    setEditingEventImageIds(event.mediaIds || [])
+    return (
+        <div className="space-y-6">
+            <EventHeader
+                onCreateClick={() => {
+                    setEditingEventId(undefined)
+                    setEditingEventTitle("")
+                    setEditingEventDescription("")
+                    setEditingEventFeatured(false)
+                    setEditingEventDate("")
+                    setEditingEventLocation("")
+                    setEditingEventPrice("")
+                    setEditingEventCategoryId("")
+                    setEditingEventImageIds([])
                     setIsEditDialogOpen(true)
-                }} onDeleteClick={() => handleDeleteEvent(event.id)} />
-            ))}
+                }}
+                isLoading={false}
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {events.map((event) => (
+                    <EventCard
+                        key={event.id}
+                        event={event}
+                        category={event.category}
+                        firstImageId={event.mediaIds?.[0]}
+                        onEditClick={() => {
+                            setEditingEventId(event.id)
+                            setEditingEventTitle(event.title)
+                            setEditingEventDescription(event.description || "")
+                            setEditingEventFeatured(event.featured)
+                            setEditingEventDate(event.startDate.toISOString().slice(0, 16))
+                            setEditingEventLocation(event.location)
+                            setEditingEventPrice(event.price.toString())
+                            setEditingEventCategoryId(event.categoryId)
+                            setEditingEventImageIds(event.mediaIds || [])
+                            setIsEditDialogOpen(true)
+                        }}
+                        onDeleteClick={() => handleDeleteEvent(event.id)}
+                    />
+                ))}
+            </div>
+            <EditEventDialog
+                categories={categories}
+                open={isEditDialogOpen}
+                onOpenChange={setIsEditDialogOpen}
+                eventId={editingEventId}
+                title={editingEventTitle}
+                onTitleChange={setEditingEventTitle}
+                categoryId={editingEventCategoryId}
+                onCategoryIdChange={setEditingEventCategoryId}
+                description={editingEventDescription}
+                onDescriptionChange={setEditingEventDescription}
+                featured={editingEventFeatured}
+                onFeaturedChange={setEditingEventFeatured}
+                date={editingEventDate}
+                onDateChange={setEditingEventDate}
+                location={editingEventLocation}
+                onLocationChange={setEditingEventLocation}
+                price={editingEventPrice}
+                onPriceChange={setEditingEventPrice}
+                imageIds={editingEventImageIds}
+                onImageIdsChange={setEditingEventImageIds}
+                onCreateClick={handleEditEvent}
+            />
         </div>
-         <EditEventDialog
-            categories={categories}
-            open={isEditDialogOpen}
-            onOpenChange={setIsEditDialogOpen}
-            eventId={editingEventId}
-
-            title={editingEventTitle}
-            onTitleChange={setEditingEventTitle}
-            categoryId={editingEventCategoryId}
-            onCategoryIdChange={setEditingEventCategoryId}
-            description={editingEventDescription}
-            onDescriptionChange={setEditingEventDescription}
-            featured={editingEventFeatured}
-            onFeaturedChange={setEditingEventFeatured}
-            date={editingEventDate}
-            onDateChange={setEditingEventDate}
-            location={editingEventLocation}
-            onLocationChange={setEditingEventLocation}
-            price={editingEventPrice}
-            onPriceChange={setEditingEventPrice}
-            imageIds={editingEventImageIds}
-            onImageIdsChange={setEditingEventImageIds}
-
-
-            onCreateClick={handleEditEvent}
-        />
-    </div>
+    )
 }

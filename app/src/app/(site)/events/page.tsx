@@ -51,12 +51,13 @@ export default function Events() {
 
     return (
         <div className="flex flex-col gap-4">
-                <div>
-                    <h1 className="text-4xl font-bold mb-4">Arrangemnter</h1>
-                    <p className="text-muted-foreground">
-                        Oppdag arrangementer i Bergen, utforsk kulturtilbudet og finn spennende ting å gjøre i byen.
-                    </p>
-                </div>            <div className="flex gap-2">
+            <div>
+                <h1 className="text-4xl font-bold mb-4">Arrangemnter</h1>
+                <p className="text-muted-foreground">
+                    Oppdag arrangementer i Bergen, utforsk kulturtilbudet og finn spennende ting å gjøre i byen.
+                </p>
+            </div>{" "}
+            <div className="flex gap-2">
                 <Input
                     value={searchQuery}
                     onChange={handleSearchChange}
@@ -64,7 +65,9 @@ export default function Events() {
                 />
                 <Select onValueChange={setSelectedCategoryId} defaultValue="all">
                     <SelectTrigger>
-                        <SelectValue>{categories.find((c) => c.id === selectedCategoryId)?.name || "Alle kategorier"}</SelectValue>
+                        <SelectValue>
+                            {categories.find((c) => c.id === selectedCategoryId)?.name || "Alle kategorier"}
+                        </SelectValue>
                     </SelectTrigger>
 
                     <SelectContent>

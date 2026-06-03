@@ -6,13 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Plus, Loader2, Search } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export function EventCategoryHeader({
-    onCreateClick,
-    isLoading,
-}: {
-    onCreateClick: () => void
-    isLoading: boolean
-}) {
+export function EventCategoryHeader({ onCreateClick, isLoading }: { onCreateClick: () => void; isLoading: boolean }) {
     return (
         <div className="space-y-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -22,10 +16,9 @@ export function EventCategoryHeader({
                 </div>
 
                 <div className="flex gap-2">
-                <Button onClick={onCreateClick} disabled={isLoading}>
-
-                            <Plus className="mr-2 h-4 w-4" />
-                            Create Event Category
+                    <Button onClick={onCreateClick} disabled={isLoading}>
+                        <Plus className="mr-2 h-4 w-4" />
+                        Create Event Category
                     </Button>
                 </div>
             </div>

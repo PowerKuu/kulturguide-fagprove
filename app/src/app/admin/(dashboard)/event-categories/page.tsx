@@ -77,22 +77,22 @@ export default function EventCategories() {
                 }}
                 isLoading={false}
             />
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {categories.map((category) => (
-                <EventCategoryCard
-                    key={category.id}
-                    eventCategory={category}
-                    onEditClick={() => {
-                        setEditingEventCategoryId(category.id)
-                        setEditingEventCategoryName(category.name)
-                        setIsEditDialogOpen(true)
-                    }}
-                    onDeleteClick={async () => {
-                        handleDeleteEventCategory(category.id)
-                    }}
-                />
-            ))}
-</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {categories.map((category) => (
+                    <EventCategoryCard
+                        key={category.id}
+                        eventCategory={category}
+                        onEditClick={() => {
+                            setEditingEventCategoryId(category.id)
+                            setEditingEventCategoryName(category.name)
+                            setIsEditDialogOpen(true)
+                        }}
+                        onDeleteClick={async () => {
+                            handleDeleteEventCategory(category.id)
+                        }}
+                    />
+                ))}
+            </div>
             <EditEventCategoryDialog
                 eventCategoryId={editingEventCategoryId}
                 open={isEditDialogOpen}

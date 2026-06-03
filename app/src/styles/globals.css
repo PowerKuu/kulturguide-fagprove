@@ -142,9 +142,8 @@ html {
     }
 }
 
-
 @media screen and (max-width: 640px) {
- html {
-    font-size: 80%;
- }
+    html {
+        font-size: 80%;
+    }
 }
