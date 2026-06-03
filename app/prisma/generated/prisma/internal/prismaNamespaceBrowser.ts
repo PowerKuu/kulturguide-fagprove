@@ -155,6 +155,7 @@ export const EventScalarFieldEnum = {
   endDate: 'endDate',
   categoryId: 'categoryId',
   mediaIds: 'mediaIds',
+  featured: 'featured',
   createdAt: 'createdAt'
 } as const
 

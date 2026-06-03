@@ -12,6 +12,9 @@ import { Trash2 } from "lucide-react"
 import { getFileUrl } from "@/lib/utils"
 import Image from "next/image"
 import { useState } from "react"
+import { Toggle } from "@/components/ui/toggle"
+import { Switch } from "@/components/ui/switch"
+import path from "path"
 
 export function EditEventDialog({
     eventId,
@@ -37,6 +40,9 @@ export function EditEventDialog({
 
     description,
     onDescriptionChange,
+
+    featured,
+    onFeaturedChange,
 
     imageIds,
     onImageIdsChange,
@@ -68,6 +74,9 @@ export function EditEventDialog({
     description?: string
     onDescriptionChange: (value: string) => void
 
+    featured?: boolean
+    onFeaturedChange: (value: boolean) => void
+
     imageIds: string[]
     onImageIdsChange: (value: string[]) => void
 
@@ -88,7 +97,7 @@ export function EditEventDialog({
 
             const formData = new FormData()
             formData.append("file", file)
-            formData.append("alt", file.name)
+            formData.append("alt", path.parse(file.name).name)
 
             const response = await fetch("/api/uploads/upload", {
                 method: "POST",
@@ -194,6 +203,11 @@ export function EditEventDialog({
                             onChange={(e) => onDescriptionChange(e.target.value)}
                             className="h-28 font-mono text-xs max-w-full wrap-anywhere"
                         />
+                    </div>
+
+                    <div className="space-y-1.5">
+                        <Label>Featured</Label>
+                        <Switch onCheckedChange={onFeaturedChange} checked={featured} />
                     </div>
 
                     <div className="space-y-1.5">

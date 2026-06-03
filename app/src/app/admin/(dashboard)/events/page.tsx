@@ -20,6 +20,7 @@ export default function Events() {
     const [editingEventId, setEditingEventId] = useState<string>()
     const [editingEventTitle, setEditingEventTitle] = useState<string>()
     const [editingEventCategoryId, setEditingEventCategoryId] = useState<string>()
+    const [editingEventFeatured, setEditingEventFeatured] = useState<boolean>(false)
     const [editingEventDescription, setEditingEventDescription] = useState<string>()
     const [editingEventDate, setEditingEventDate] = useState<string>()
     const [editingEventLocation, setEditingEventLocation] = useState<string>()
@@ -39,6 +40,7 @@ export default function Events() {
             location: z.string().nonempty("Location is required"),
             price: z.string().nonempty("Price is required").transform((value) => parseFloat(value)),
             categoryId: z.string().nonempty("Category is required"),
+            featured: z.boolean(),
             mediaIds: z.array(z.string()).min(1, "At least one image is required")
         })
 
@@ -49,9 +51,10 @@ export default function Events() {
             location: editingEventLocation,
             price: editingEventPrice,
             categoryId: editingEventCategoryId,
+            featured: editingEventFeatured,
             mediaIds: editingEventImageIds
         })
-        
+
         if (!parsedEvent.success) {
             toast.error(parsedEvent.error.issues[0]?.message || "Please fill out all fields correctly.")
             return
@@ -79,6 +82,7 @@ export default function Events() {
 
         setEditingEventTitle("")
         setEditingEventDescription("")
+        setEditingEventFeatured(false)
         setEditingEventDate("")
         setEditingEventLocation("")
         setEditingEventPrice("")
@@ -97,6 +101,7 @@ export default function Events() {
             setEditingEventId(undefined) 
             setEditingEventTitle("")
             setEditingEventDescription("")
+            setEditingEventFeatured(false)
             setEditingEventDate("")
             setEditingEventLocation("")
             setEditingEventPrice("")
@@ -111,6 +116,7 @@ export default function Events() {
                     setEditingEventId(event.id)
                     setEditingEventTitle(event.title)
                     setEditingEventDescription(event.description || "")
+                    setEditingEventFeatured(event.featured)
                     setEditingEventDate(event.startDate.toISOString().slice(0, 16))
                     setEditingEventLocation(event.location)
                     setEditingEventPrice(event.price.toString())
@@ -132,6 +138,8 @@ export default function Events() {
             onCategoryIdChange={setEditingEventCategoryId}
             description={editingEventDescription}
             onDescriptionChange={setEditingEventDescription}
+            featured={editingEventFeatured}
+            onFeaturedChange={setEditingEventFeatured}
             date={editingEventDate}
             onDateChange={setEditingEventDate}
             location={editingEventLocation}

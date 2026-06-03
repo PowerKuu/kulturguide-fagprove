@@ -109,6 +109,8 @@ model Event {
   categoryId String
   mediaIds   String[]
 
+  featured    Boolean       @default(false)
+
   createdAt   DateTime @default(now())
 }
 

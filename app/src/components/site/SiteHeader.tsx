@@ -22,7 +22,7 @@ export function SiteHeader() {
                         </Link>
                     ))}
                     <Button size="sm" className=" h-9 rounded-md px-4" asChild>
-                        <Link href="/#events">Arrangementer</Link>
+                        <Link href="/events">Arrangementer</Link>
                     </Button>
                 </nav>
             </div>
