@@ -43,6 +43,7 @@ export type EventMinAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   categoryId: string | null
+  createdAt: Date | null
 }
 
 export type EventMaxAggregateOutputType = {
@@ -54,6 +55,7 @@ export type EventMaxAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   categoryId: string | null
+  createdAt: Date | null
 }
 
 export type EventCountAggregateOutputType = {
@@ -66,6 +68,7 @@ export type EventCountAggregateOutputType = {
   endDate: number
   categoryId: number
   mediaIds: number
+  createdAt: number
   _all: number
 }
 
@@ -87,6 +90,7 @@ export type EventMinAggregateInputType = {
   startDate?: true
   endDate?: true
   categoryId?: true
+  createdAt?: true
 }
 
 export type EventMaxAggregateInputType = {
@@ -98,6 +102,7 @@ export type EventMaxAggregateInputType = {
   startDate?: true
   endDate?: true
   categoryId?: true
+  createdAt?: true
 }
 
 export type EventCountAggregateInputType = {
@@ -110,6 +115,7 @@ export type EventCountAggregateInputType = {
   endDate?: true
   categoryId?: true
   mediaIds?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -209,6 +215,7 @@ export type EventGroupByOutputType = {
   endDate: Date | null
   categoryId: string
   mediaIds: string[]
+  createdAt: Date
   _count: EventCountAggregateOutputType | null
   _avg: EventAvgAggregateOutputType | null
   _sum: EventSumAggregateOutputType | null
@@ -244,6 +251,7 @@ export type EventWhereInput = {
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   categoryId?: Prisma.StringFilter<"Event"> | string
   mediaIds?: Prisma.StringNullableListFilter<"Event">
+  createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   category?: Prisma.XOR<Prisma.EventCategoryScalarRelationFilter, Prisma.EventCategoryWhereInput>
 }
 
@@ -257,6 +265,7 @@ export type EventOrderByWithRelationInput = {
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   mediaIds?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   category?: Prisma.EventCategoryOrderByWithRelationInput
 }
 
@@ -273,6 +282,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   categoryId?: Prisma.StringFilter<"Event"> | string
   mediaIds?: Prisma.StringNullableListFilter<"Event">
+  createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
   category?: Prisma.XOR<Prisma.EventCategoryScalarRelationFilter, Prisma.EventCategoryWhereInput>
 }, "id">
 
@@ -286,6 +296,7 @@ export type EventOrderByWithAggregationInput = {
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   mediaIds?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
   _avg?: Prisma.EventAvgOrderByAggregateInput
   _max?: Prisma.EventMaxOrderByAggregateInput
@@ -306,6 +317,7 @@ export type EventScalarWhereWithAggregatesInput = {
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   categoryId?: Prisma.StringWithAggregatesFilter<"Event"> | string
   mediaIds?: Prisma.StringNullableListFilter<"Event">
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Event"> | Date | string
 }
 
 export type EventCreateInput = {
@@ -317,6 +329,7 @@ export type EventCreateInput = {
   startDate: Date | string
   endDate?: Date | string | null
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
   category: Prisma.EventCategoryCreateNestedOneWithoutEventsInput
 }
 
@@ -330,6 +343,7 @@ export type EventUncheckedCreateInput = {
   endDate?: Date | string | null
   categoryId: string
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
 }
 
 export type EventUpdateInput = {
@@ -341,6 +355,7 @@ export type EventUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   category?: Prisma.EventCategoryUpdateOneRequiredWithoutEventsNestedInput
 }
 
@@ -354,6 +369,7 @@ export type EventUncheckedUpdateInput = {
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventCreateManyInput = {
@@ -366,6 +382,7 @@ export type EventCreateManyInput = {
   endDate?: Date | string | null
   categoryId: string
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
 }
 
 export type EventUpdateManyMutationInput = {
@@ -377,6 +394,7 @@ export type EventUpdateManyMutationInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventUncheckedUpdateManyInput = {
@@ -389,6 +407,7 @@ export type EventUncheckedUpdateManyInput = {
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventListRelationFilter = {
@@ -419,6 +438,7 @@ export type EventCountOrderByAggregateInput = {
   endDate?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   mediaIds?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventAvgOrderByAggregateInput = {
@@ -434,6 +454,7 @@ export type EventMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventMinOrderByAggregateInput = {
@@ -445,6 +466,7 @@ export type EventMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventSumOrderByAggregateInput = {
@@ -519,6 +541,7 @@ export type EventCreateWithoutCategoryInput = {
   startDate: Date | string
   endDate?: Date | string | null
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
 }
 
 export type EventUncheckedCreateWithoutCategoryInput = {
@@ -530,6 +553,7 @@ export type EventUncheckedCreateWithoutCategoryInput = {
   startDate: Date | string
   endDate?: Date | string | null
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
 }
 
 export type EventCreateOrConnectWithoutCategoryInput = {
@@ -571,6 +595,7 @@ export type EventScalarWhereInput = {
   endDate?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   categoryId?: Prisma.StringFilter<"Event"> | string
   mediaIds?: Prisma.StringNullableListFilter<"Event">
+  createdAt?: Prisma.DateTimeFilter<"Event"> | Date | string
 }
 
 export type EventCreateManyCategoryInput = {
@@ -582,6 +607,7 @@ export type EventCreateManyCategoryInput = {
   startDate: Date | string
   endDate?: Date | string | null
   mediaIds?: Prisma.EventCreatemediaIdsInput | string[]
+  createdAt?: Date | string
 }
 
 export type EventUpdateWithoutCategoryInput = {
@@ -593,6 +619,7 @@ export type EventUpdateWithoutCategoryInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventUncheckedUpdateWithoutCategoryInput = {
@@ -604,6 +631,7 @@ export type EventUncheckedUpdateWithoutCategoryInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventUncheckedUpdateManyWithoutCategoryInput = {
@@ -615,6 +643,7 @@ export type EventUncheckedUpdateManyWithoutCategoryInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   mediaIds?: Prisma.EventUpdatemediaIdsInput | string[]
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -629,6 +658,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   endDate?: boolean
   categoryId?: boolean
   mediaIds?: boolean
+  createdAt?: boolean
   category?: boolean | Prisma.EventCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -642,6 +672,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   endDate?: boolean
   categoryId?: boolean
   mediaIds?: boolean
+  createdAt?: boolean
   category?: boolean | Prisma.EventCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -655,6 +686,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   endDate?: boolean
   categoryId?: boolean
   mediaIds?: boolean
+  createdAt?: boolean
   category?: boolean | Prisma.EventCategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -668,9 +700,10 @@ export type EventSelectScalar = {
   endDate?: boolean
   categoryId?: boolean
   mediaIds?: boolean
+  createdAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "price" | "location" | "description" | "startDate" | "endDate" | "categoryId" | "mediaIds", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "price" | "location" | "description" | "startDate" | "endDate" | "categoryId" | "mediaIds" | "createdAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.EventCategoryDefaultArgs<ExtArgs>
 }
@@ -696,6 +729,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     endDate: Date | null
     categoryId: string
     mediaIds: string[]
+    createdAt: Date
   }, ExtArgs["result"]["event"]>
   composites: {}
 }
@@ -1129,6 +1163,7 @@ export interface EventFieldRefs {
   readonly endDate: Prisma.FieldRef<"Event", 'DateTime'>
   readonly categoryId: Prisma.FieldRef<"Event", 'String'>
   readonly mediaIds: Prisma.FieldRef<"Event", 'String[]'>
+  readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
 }
     
 

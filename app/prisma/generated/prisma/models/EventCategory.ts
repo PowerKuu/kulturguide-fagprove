@@ -27,16 +27,19 @@ export type AggregateEventCategory = {
 export type EventCategoryMinAggregateOutputType = {
   id: string | null
   name: string | null
+  createdAt: Date | null
 }
 
 export type EventCategoryMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  createdAt: Date | null
 }
 
 export type EventCategoryCountAggregateOutputType = {
   id: number
   name: number
+  createdAt: number
   _all: number
 }
 
@@ -44,16 +47,19 @@ export type EventCategoryCountAggregateOutputType = {
 export type EventCategoryMinAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
 }
 
 export type EventCategoryMaxAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
 }
 
 export type EventCategoryCountAggregateInputType = {
   id?: true
   name?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -132,6 +138,7 @@ export type EventCategoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type EventCategoryGroupByOutputType = {
   id: string
   name: string
+  createdAt: Date
   _count: EventCategoryCountAggregateOutputType | null
   _min: EventCategoryMinAggregateOutputType | null
   _max: EventCategoryMaxAggregateOutputType | null
@@ -158,12 +165,14 @@ export type EventCategoryWhereInput = {
   NOT?: Prisma.EventCategoryWhereInput | Prisma.EventCategoryWhereInput[]
   id?: Prisma.StringFilter<"EventCategory"> | string
   name?: Prisma.StringFilter<"EventCategory"> | string
+  createdAt?: Prisma.DateTimeFilter<"EventCategory"> | Date | string
   events?: Prisma.EventListRelationFilter
 }
 
 export type EventCategoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   events?: Prisma.EventOrderByRelationAggregateInput
 }
 
@@ -173,12 +182,14 @@ export type EventCategoryWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EventCategoryWhereInput[]
   NOT?: Prisma.EventCategoryWhereInput | Prisma.EventCategoryWhereInput[]
   name?: Prisma.StringFilter<"EventCategory"> | string
+  createdAt?: Prisma.DateTimeFilter<"EventCategory"> | Date | string
   events?: Prisma.EventListRelationFilter
 }, "id">
 
 export type EventCategoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.EventCategoryCountOrderByAggregateInput
   _max?: Prisma.EventCategoryMaxOrderByAggregateInput
   _min?: Prisma.EventCategoryMinOrderByAggregateInput
@@ -190,60 +201,71 @@ export type EventCategoryScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EventCategoryScalarWhereWithAggregatesInput | Prisma.EventCategoryScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"EventCategory"> | string
   name?: Prisma.StringWithAggregatesFilter<"EventCategory"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"EventCategory"> | Date | string
 }
 
 export type EventCategoryCreateInput = {
   id?: string
   name: string
+  createdAt?: Date | string
   events?: Prisma.EventCreateNestedManyWithoutCategoryInput
 }
 
 export type EventCategoryUncheckedCreateInput = {
   id?: string
   name: string
+  createdAt?: Date | string
   events?: Prisma.EventUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type EventCategoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUpdateManyWithoutCategoryNestedInput
 }
 
 export type EventCategoryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   events?: Prisma.EventUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type EventCategoryCreateManyInput = {
   id?: string
   name: string
+  createdAt?: Date | string
 }
 
 export type EventCategoryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventCategoryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventCategoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventCategoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventCategoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type EventCategoryScalarRelationFilter = {
@@ -268,11 +290,13 @@ export type EventCategoryUpdateOneRequiredWithoutEventsNestedInput = {
 export type EventCategoryCreateWithoutEventsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
 }
 
 export type EventCategoryUncheckedCreateWithoutEventsInput = {
   id?: string
   name: string
+  createdAt?: Date | string
 }
 
 export type EventCategoryCreateOrConnectWithoutEventsInput = {
@@ -294,11 +318,13 @@ export type EventCategoryUpdateToOneWithWhereWithoutEventsInput = {
 export type EventCategoryUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type EventCategoryUncheckedUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -335,6 +361,7 @@ export type EventCategoryCountOutputTypeCountEventsArgs<ExtArgs extends runtime.
 export type EventCategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
   events?: boolean | Prisma.EventCategory$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventCategory"]>
@@ -342,19 +369,22 @@ export type EventCategorySelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type EventCategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["eventCategory"]>
 
 export type EventCategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["eventCategory"]>
 
 export type EventCategorySelectScalar = {
   id?: boolean
   name?: boolean
+  createdAt?: boolean
 }
 
-export type EventCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["eventCategory"]>
+export type EventCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["eventCategory"]>
 export type EventCategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   events?: boolean | Prisma.EventCategory$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -370,6 +400,7 @@ export type $EventCategoryPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    createdAt: Date
   }, ExtArgs["result"]["eventCategory"]>
   composites: {}
 }
@@ -796,6 +827,7 @@ export interface Prisma__EventCategoryClient<T, Null = never, ExtArgs extends ru
 export interface EventCategoryFieldRefs {
   readonly id: Prisma.FieldRef<"EventCategory", 'String'>
   readonly name: Prisma.FieldRef<"EventCategory", 'String'>
+  readonly createdAt: Prisma.FieldRef<"EventCategory", 'DateTime'>
 }
     
 

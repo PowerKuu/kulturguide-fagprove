@@ -90,6 +90,9 @@ model EventCategory {
   id     String  @id @default(cuid())
   name   String
   events Event[]
+
+    createdAt   DateTime @default(now())
+
 }
 
 model Event {
@@ -105,6 +108,8 @@ model Event {
   category   EventCategory @relation(fields: [categoryId], references: [id])
   categoryId String
   mediaIds   String[]
+
+  createdAt   DateTime @default(now())
 }
 
 model Contact {

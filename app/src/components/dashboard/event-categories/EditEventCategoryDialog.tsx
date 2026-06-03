@@ -35,7 +35,7 @@ export function EditEventCategoryDialog({
     
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-sm">
+            <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{eventCategoryId ? "Edit Event Category" : "Create Event Category"}</DialogTitle>
                     <DialogDescription>

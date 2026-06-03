@@ -3,12 +3,17 @@
 import { EventHeader } from "@/components/dashboard/event/EventHeader"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import {  Event, EventCategory } from "@/prisma/client"
+import { Event, EventCategory } from "@/prisma/client"
 import { createEvent, getEvents } from "@/server/admin/actions/event"
 import EventCard from "@/components/dashboard/event/EventCard"
-import { createEventCategory, getEventCategories } from "@/server/admin/actions/eventCategory"
+import {
+    createEventCategory,
+    deleteEventCategory,
+    getEventCategories,
+    updateEventCategory
+} from "@/server/admin/actions/eventCategory"
 import { EditEventDialog } from "@/components/dashboard/event/EditEventDialog"
-import { z } from "zod"
+import { set, z } from "zod"
 import { toast } from "sonner"
 import EventCategoryCard from "@/components/dashboard/event-categories/EventCategoryCard"
 import { EditEventCategoryDialog } from "@/components/dashboard/event-categories/EditEventCategoryDialog"
@@ -26,9 +31,9 @@ export default function EventCategories() {
         getEventCategories().then(setCategories)
     }, [])
 
-    async function handleCreateEventCategory() {
+    async function handleEditEventCategory() {
         const CreateEventCategorySchema = z.object({
-            name: z.string()
+            name: z.string().nonempty("Name is required")
         })
 
         const parsedCategory = CreateEventCategorySchema.safeParse({
@@ -40,9 +45,15 @@ export default function EventCategories() {
             return
         }
 
-        await createEventCategory({
-            ...parsedCategory.data
-        })
+        if (editingEventCategoryId) {
+            await updateEventCategory(editingEventCategoryId, {
+                ...parsedCategory.data
+            })
+        } else {
+            await createEventCategory({
+                ...parsedCategory.data
+            })
+        }
 
         const updatedCategories = await getEventCategories()
         setCategories(updatedCategories)
@@ -50,21 +61,46 @@ export default function EventCategories() {
         setIsEditDialogOpen(false)
     }
 
-    return <div className="space-y-6">
-        <EventCategoryHeader onCreateClick={() => { setIsEditDialogOpen(true) }} isLoading={false} />
+    async function handleDeleteEventCategory(id: string) {
+        await deleteEventCategory(id)
+        const updatedCategories = await getEventCategories()
+        setCategories(updatedCategories)
+    }
 
-        {categories.map((category) => (
-            <EventCategoryCard key={category.id} eventCategory={category} />
-        ))}
-
-         <EditEventCategoryDialog
-            open={isEditDialogOpen}
-            onOpenChange={setIsEditDialogOpen}
-
-            name={editingEventCategoryName}
-            onNameChange={setEditingEventCategoryName}
-
-            onCreateClick={handleCreateEventCategory}
-        />
-    </div>
+    return (
+        <div className="space-y-6">
+            <EventCategoryHeader
+                onCreateClick={() => {
+                    setEditingEventCategoryId(undefined)
+                    setEditingEventCategoryName("")
+                    setIsEditDialogOpen(true)
+                }}
+                isLoading={false}
+            />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {categories.map((category) => (
+                <EventCategoryCard
+                    key={category.id}
+                    eventCategory={category}
+                    onEditClick={() => {
+                        setEditingEventCategoryId(category.id)
+                        setEditingEventCategoryName(category.name)
+                        setIsEditDialogOpen(true)
+                    }}
+                    onDeleteClick={async () => {
+                        handleDeleteEventCategory(category.id)
+                    }}
+                />
+            ))}
+</div>
+            <EditEventCategoryDialog
+                eventCategoryId={editingEventCategoryId}
+                open={isEditDialogOpen}
+                onOpenChange={setIsEditDialogOpen}
+                name={editingEventCategoryName}
+                onNameChange={setEditingEventCategoryName}
+                onCreateClick={handleEditEventCategory}
+            />
+        </div>
+    )
 }

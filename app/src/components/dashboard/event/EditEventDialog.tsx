@@ -7,6 +7,11 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { EventCategory } from "@/prisma/client"
 import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
+import { Trash2 } from "lucide-react"
+import { getFileUrl } from "@/lib/utils"
+import Image from "next/image"
+import { useState } from "react"
 
 export function EditEventDialog({
     eventId,
@@ -20,7 +25,7 @@ export function EditEventDialog({
 
     title,
     onTitleChange,
-    
+
     price,
     onPriceChange,
 
@@ -33,6 +38,9 @@ export function EditEventDialog({
     description,
     onDescriptionChange,
 
+    imageIds,
+    onImageIdsChange,
+
     onCreateClick,
     error
 }: {
@@ -41,7 +49,7 @@ export function EditEventDialog({
 
     open: boolean
     onOpenChange: (open: boolean) => void
-    
+
     categoryId?: string
     onCategoryIdChange: (value: string) => void
 
@@ -60,30 +68,71 @@ export function EditEventDialog({
     description?: string
     onDescriptionChange: (value: string) => void
 
+    imageIds: string[]
+    onImageIdsChange: (value: string[]) => void
+
     onCreateClick: () => void
     error?: string
 }) {
-    
+    async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+        const files = e.target.files
+        if (!files) return
+
+        const newImageIds: string[] = []
+
+        for (const file of files) {
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error(`File ${file.name} is larger than 5MB and was not uploaded.`)
+                return
+            }
+
+            const formData = new FormData()
+            formData.append("file", file)
+            formData.append("alt", file.name)
+
+            const response = await fetch("/api/uploads/upload", {
+                method: "POST",
+                body: formData
+            })
+
+            if (!response.ok) {
+                toast.error("Failed to upload images. Please try again.")
+                return
+            }
+
+            const data = await response.json()
+            newImageIds.push(data.id)
+        }
+
+        onImageIdsChange([...imageIds, ...newImageIds])
+    }
+
+    function handleImageDelete(imageId: string) {
+        onImageIdsChange(imageIds.filter((id) => id !== imageId))
+    }
+
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-sm">
+            <DialogContent className="min-w-0 sm:min-w-xl">
                 <DialogHeader>
                     <DialogTitle>{eventId ? "Edit Event" : "Create Event"}</DialogTitle>
                     <DialogDescription>
-                        {eventId ? "Make changes to the event and click save when you're done." : "Fill out the form below to create a new event."}
+                        {eventId
+                            ? "Make changes to the event and click save when you're done."
+                            : "Fill out the form below to create a new event."}
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-4">
                     <div className="space-y-1.5">
-                        <Label>
-                            Category
-                        </Label>
+                        <Label>Category</Label>
                         <Select value={categoryId} onValueChange={onCategoryIdChange}>
                             <SelectTrigger className="w-full">
-                                <SelectValue placeholder={
-                                    categories.length === 0 ? "No categories available" : "Select a category"
-                                } />
+                                <SelectValue
+                                    placeholder={
+                                        categories.length === 0 ? "No categories available" : "Select a category"
+                                    }
+                                />
                             </SelectTrigger>
                             <SelectContent>
                                 {categories.map((c) => (
@@ -106,8 +155,9 @@ export function EditEventDialog({
                     </div>
 
                     <div className="space-y-1.5">
-                        <Label>Price</Label>
+                        <Label>Price (KR)</Label>
                         <Input
+                            type="number"
                             placeholder="Enter the price for the event."
                             value={price ?? ""}
                             onChange={(e) => onPriceChange(e.target.value)}
@@ -146,10 +196,37 @@ export function EditEventDialog({
                         />
                     </div>
 
+                    <div className="space-y-1.5">
+                        <Label>Images</Label>
+                        <p>Alt tag will be the file name!</p>
+                        <Input type="file" onChange={handleImageUpload} accept="image/*" className="font-mono text-xs" />
+                        <div className="grid grid-cols-2 gap-2">
+                            {imageIds.map((id) => (
+                                <div key={id} className="relative w-full h-40">
+                                    <Image
+                                        src={getFileUrl(id)}
+                                        alt="Event image"
+                                        width={200}
+                                        height={200}
+                                        className="object-cover object-top w-full h-full rounded"
+                                    />
+                                    <Button
+                                        size="icon-sm"
+                                        variant="destructive"
+                                        className="absolute -top-2 -right-2"
+                                        onClick={() => handleImageDelete(id)}
+                                    >
+                                        <Trash2 className="h-3 w-3" />
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {error && <p className="text-sm text-destructive">{error}</p>}
 
                     <Button onClick={onCreateClick} className="w-full">
-                       {eventId ? "Save Changes" : "Create Event"}
+                        {eventId ? "Save Changes" : "Create Event"}
                     </Button>
                 </div>
             </DialogContent>
