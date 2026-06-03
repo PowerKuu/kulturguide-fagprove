@@ -18,6 +18,21 @@ export async function getFeaturedEvents() {
     })
 }
 
+export async function getEvent(id: string) {
+    const event = await prisma.event.findUnique({
+        where: { id },
+        include: {
+            category: true
+        }
+    })
+
+    if (!event) {
+        throw new Error("Event not found")
+    }
+
+    return event
+}
+
 export async function getFilteredEvents({ search, categoryId }: { search?: string, categoryId?: string }) {
     const MAX_SEARCH_DISTANCE = 1
 

@@ -31,6 +31,7 @@ export default function EventCard({
     }, [firstImageId])
 
     return (
+        <Link href={`/events/${event.id}`} className="w-full">
         <Card className="group cursor-pointer overflow-hidden gap-0 pt-0 w-full">
             <CardContent className="relative aspect-square p-0">
                 {firstImageId ? (
@@ -63,17 +64,16 @@ export default function EventCard({
                 </div>
                 {event.description && <p className="line-clamp-2">{event.description}</p>}
                 <div className="w-full flex justify-between items-center mt-3">
-                    <Link href={`/events/${event.id}`} className="text-sm text-primary ">
                         <Button variant="outline" size="sm">
                             Se detaljer
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
-                    </Link>
                     <div className="flex items-center font-semibold">
                         {event.price} kr
                     </div>
                 </div>
             </CardFooter>
         </Card>
+        </Link>
     )
 }
