@@ -14,7 +14,6 @@ datasource db {
   extensions = [pgvector(map: "vector")]
 }
 
-
 enum Role {
   USER
   ADMIN
@@ -31,8 +30,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  role          Role   @default(USER)
-
+  role Role @default(USER)
 
   @@unique([email])
   @@map("user")
@@ -91,12 +89,11 @@ model EventCategory {
   name   String
   events Event[]
 
-    createdAt   DateTime @default(now())
-
+  createdAt DateTime @default(now())
 }
 
 model Event {
-  id          String                          @id @default(cuid())
+  id          String                        @id @default(cuid())
   title       String
   price       Float
   location    String
@@ -109,9 +106,9 @@ model Event {
   categoryId String
   mediaIds   String[]
 
-  featured    Boolean       @default(false)
+  featured Boolean @default(false)
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 model Contact {
@@ -122,14 +119,13 @@ model Contact {
   createdAt DateTime @default(now())
 }
 
-
 model File {
-  id        String   @id @default(cuid())
-  name     String
-  type      String
+  id   String @id @default(cuid())
+  name String
+  type String
 
   privateUserId String?
-  alt String?
+  alt           String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

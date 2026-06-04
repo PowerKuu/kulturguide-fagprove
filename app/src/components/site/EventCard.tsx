@@ -41,8 +41,13 @@ export default function EventCard({
                             <ImageIcon className="h-12 w-12 text-muted-foreground" />
                         </div>
                     )}
-                    <div className="absolute right-2 top-2">
-                        <Badge variant="default" className="text-xs">
+                    <div className="absolute right-2 top-2 flex gap-1">
+                        { event.startDate > new Date() && (
+                            <Badge variant="default" className="text-xs">
+                                Kommende
+                            </Badge>
+                        )}
+                        <Badge variant="secondary" className="text-xs">
                             {category.name}
                         </Badge>
                     </div>

@@ -41,7 +41,7 @@ export default function EventCategories() {
         })
 
         if (!parsedCategory.success) {
-            toast.error("Please fill out all fields correctly.")
+            toast.error(parsedCategory.error.issues[0]?.message || "Please fill out all fields correctly.")
             return
         }
 

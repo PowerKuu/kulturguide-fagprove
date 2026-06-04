@@ -31,10 +31,12 @@ import { usePathname, useRouter } from "next/navigation"
 
 import AppLogo from "@/components/AppLogo"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { url } from "inspector/promises"
 
 const items = [
     { title: "Events", url: "/admin/events", icon: Store },
-    { title: "Event Categories", url: "/admin/event-categories", icon: Tag }
+    { title: "Event Categories", url: "/admin/event-categories", icon: Tag },
+    { title: "Contact", url: "/admin/contact", icon: UserCircle2 },
 ]
 
 export function DashboardSidebar() {

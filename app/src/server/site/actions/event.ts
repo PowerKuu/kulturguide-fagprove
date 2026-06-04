@@ -13,7 +13,7 @@ export async function getFeaturedEvents() {
             category: true
         },
         orderBy: {
-            createdAt: "desc"
+            startDate: "asc"
         }
     })
 }
@@ -53,7 +53,7 @@ export async function getFilteredEvents({ search, categoryId }: { search?: strin
         whereParts.push(Prisma.sql`"categoryId" = ${categoryId}`)
     }
 
-    orderByParts.push(Prisma.sql`"createdAt" DESC`)
+    orderByParts.push(Prisma.sql`"startDate" ASC`)
     whereParts.push(Prisma.sql`"id" IS NOT NULL`)
 
     const events: Event[] = await prisma.$queryRaw`
