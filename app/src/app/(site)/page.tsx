@@ -17,7 +17,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-10">
             <div>
                 <div>
                     <h1 className="text-4xl font-bold mb-4">Bergen kulturguide</h1>
@@ -27,6 +27,7 @@ export default function Home() {
                     <Link href="/events">
                         <Button className="mt-6" size="lg">
                             Se arrangementer
+                            <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </Link>
                 </div>
@@ -41,8 +42,13 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <hr className="border-muted" />
+
+            <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
                 <h2 className="text-2xl font-bold">Utvalgte arrangementer</h2>
+                <p className="text-muted-foreground">Utforsk noen av de mest populære og kommende arrangementene i Bergen.</p>
+                </div>
                 {featuredEvents.length === 0 ? (
                     <p className="text-muted-foreground">Ingen utvalgte arrangementer for øyeblikket.</p>
                 ) : (
