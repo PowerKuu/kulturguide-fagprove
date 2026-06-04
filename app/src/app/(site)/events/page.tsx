@@ -12,6 +12,7 @@ export default function Events() {
     const [events, setEvents] = useState<(Event & { category: EventCategory })[]>([])
     const [categories, setCategories] = useState<EventCategory[]>([])
 
+    const [isLoading, setIsLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedCategoryId, setSelectedCategoryId] = useState<string>()
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery)
@@ -43,10 +44,13 @@ export default function Events() {
     }, [])
 
     useEffect(() => {
+        setIsLoading(true)
         getFilteredEvents({
             search: debouncedSearchQuery,
             categoryId: selectedCategoryId === "all" ? undefined : selectedCategoryId
-        }).then(setEvents)
+        })
+            .then(setEvents)
+            .finally(() => setIsLoading(false))
     }, [debouncedSearchQuery, selectedCategoryId])
 
     return (
@@ -80,7 +84,9 @@ export default function Events() {
                     </SelectContent>
                 </Select>
             </div>
-            {events.length === 0 ? (
+            {isLoading ? (
+                <p className="text-muted-foreground">Laster arrangementer...</p>
+            ) : events.length === 0 ? (
                 <p className="text-muted-foreground">Ingen utvalgte arrangementer for øyeblikket.</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

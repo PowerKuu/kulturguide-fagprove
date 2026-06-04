@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { getFileUrl } from "@/lib/utils"
 import { Event } from "@/prisma/client"
-import { ArrowRight, Calendar, Coins, Edit, ImageIcon, Map, MapPin, Trash2 } from "lucide-react"
+import { ArrowRight, Calendar, Coins, Edit, Icon, ImageIcon, Map, MapPin, Star, StarOff, Trash2 } from "lucide-react"
 import Image from "next/image"
 import { format } from "date-fns"
 import { EventCategory } from "@/prisma/browser"
@@ -13,6 +13,7 @@ import { getFileAlt } from "@/server/site/actions/uploads"
 import { useEffect, useState } from "react"
 import { nb } from "date-fns/locale"
 import Link from "next/link"
+import { useFavorites } from "@/hooks/use-favorites"
 
 export default function EventCard({
     event,
@@ -31,6 +32,8 @@ export default function EventCard({
         }
     }, [firstImageId])
 
+    const { favorites, toggleFavorite } = useFavorites()
+
     return (
         <Link href={`/events/${event.id}`} className="w-full">
             <Card className="group cursor-pointer overflow-hidden gap-0 pt-0 w-full">
@@ -43,7 +46,7 @@ export default function EventCard({
                         </div>
                     )}
                     <div className="absolute right-2 top-2 flex gap-1">
-                        { event.startDate > new Date() && (
+                        {event.startDate > new Date() && (
                             <Badge variant="default" className="text-xs">
                                 Kommende
                             </Badge>
@@ -70,10 +73,24 @@ export default function EventCard({
                     </div>
                     {event.description && <p className="line-clamp-2">{event.description}</p>}
                     <div className="w-full flex justify-between items-center mt-3">
-                        <Button variant="outline" size="sm">
-                            Se detaljer
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        <div className="flex items-center">
+                            <Button variant="outline" size="sm">
+                                Se detaljer
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                            <Button
+                                variant={favorites.includes(event.id) ? "destructive" : "outline"}
+                                size="sm"
+                                className="ml-2"
+                                onClick={(e) => {
+                                    toggleFavorite(event.id)
+                                    e.preventDefault()
+                                }}
+                            >
+                                {favorites.includes(event.id) ? <Star fill="currentColor"></Star> : <Star></Star>}
+                            </Button>
+                        </div>
+
                         <div className="flex items-center font-semibold">{event.price} kr</div>
                     </div>
                 </CardFooter>

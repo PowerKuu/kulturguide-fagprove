@@ -230,12 +230,12 @@ export function EditEventDialog({
                                         className="object-cover object-top w-full h-full rounded"
                                     />
                                     <Button
-                                        size="icon-sm"
-                                        variant="destructive"
-                                        className="absolute -top-2 -right-2"
+                                        size="sm"
+                                        className="absolute bottom-2 right-2 bg-destructive text-white shadow-md hover:bg-destructive/90"
                                         onClick={() => handleImageDelete(id)}
                                     >
-                                        <Trash2 className="h-3 w-3" />
+                                        <Trash2 className="h-4 w-4" />
+                                        Delete
                                     </Button>
                                 </div>
                             ))}

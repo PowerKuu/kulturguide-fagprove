@@ -46,8 +46,10 @@ export default function Home() {
 
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
-                <h2 className="text-2xl font-bold">Utvalgte arrangementer</h2>
-                <p className="text-muted-foreground">Utforsk noen av de mest populære og kommende arrangementene i Bergen.</p>
+                    <h2 className="text-2xl font-bold">Utvalgte arrangementer</h2>
+                    <p className="text-muted-foreground">
+                        Utforsk noen av de mest populære og kommende arrangementene i Bergen.
+                    </p>
                 </div>
                 {featuredEvents.length === 0 ? (
                     <p className="text-muted-foreground">Ingen utvalgte arrangementer for øyeblikket.</p>
