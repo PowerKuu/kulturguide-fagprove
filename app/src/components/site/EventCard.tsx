@@ -11,6 +11,7 @@ import { format } from "date-fns"
 import { EventCategory } from "@/prisma/browser"
 import { getFileAlt } from "@/server/site/actions/uploads"
 import { useEffect, useState } from "react"
+import { nb } from "date-fns/locale"
 import Link from "next/link"
 
 export default function EventCard({
@@ -59,7 +60,7 @@ export default function EventCard({
                     <div className="flex flex-wrap mt-auto gap-1">
                         <Badge variant="outline" className="text-xs">
                             <Calendar className="mr-1 h-3 w-3" />
-                            {format(new Date(event.startDate), "MMM d, yyyy")}
+                            {format(new Date(event.startDate), "MMM d, yyyy", { locale: nb })}
                         </Badge>
                         <Badge variant="outline" className="text-xs">
                             <MapPin className="mr-1 h-3 w-3" />
