@@ -81,7 +81,7 @@ export default function EventCard({
                     </Badge>
                     <Badge variant="outline" className="text-xs">
                         <Coins className="mr-1 h-3 w-3" />
-                        {event.price} kr
+                        {event.price === 0 ? "Gratis" : `${event.price} kr`}
                     </Badge>
                 </div>
             </CardFooter>

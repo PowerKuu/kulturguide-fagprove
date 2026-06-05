@@ -91,7 +91,7 @@ export default function EventCard({
                             </Button>
                         </div>
 
-                        <div className="flex items-center font-semibold">{event.price} kr</div>
+                        <div className="flex items-center font-semibold">{event.price === 0 ? "Gratis" : `${event.price} kr`}</div>
                     </div>
                 </CardFooter>
             </Card>

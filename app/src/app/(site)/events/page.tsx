@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 export default function Events() {
     const [events, setEvents] = useState<(Event & { category: EventCategory })[]>([])
     const [categories, setCategories] = useState<EventCategory[]>([])
+    const [priceFilter, setPriceFilter] = useState<string>("all")
 
     const [isLoading, setIsLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState("")
@@ -47,11 +48,13 @@ export default function Events() {
         setIsLoading(true)
         getFilteredEvents({
             search: debouncedSearchQuery,
-            categoryId: selectedCategoryId === "all" ? undefined : selectedCategoryId
+            categoryId: selectedCategoryId === "all" ? undefined : selectedCategoryId,
+            minPrice: priceFilter === "paid" ? Number.MIN_VALUE : undefined,
+            maxPrice: priceFilter === "free" ? 0 : undefined,
         })
             .then(setEvents)
             .finally(() => setIsLoading(false))
-    }, [debouncedSearchQuery, selectedCategoryId])
+    }, [debouncedSearchQuery, selectedCategoryId, priceFilter])
 
     return (
         <div className="flex flex-col gap-4">
@@ -81,6 +84,23 @@ export default function Events() {
                                 {category.name}
                             </SelectItem>
                         ))}
+                    </SelectContent>
+                </Select>
+                <Select onValueChange={setPriceFilter} defaultValue="all">
+                    <SelectTrigger>
+                        <SelectValue>
+                            {priceFilter === "all"
+                                ? "Alle priser"
+                                : priceFilter === "free"
+                                ? "Gratis"
+                                : "Betalt"}
+                        </SelectValue>
+                    </SelectTrigger>
+
+                    <SelectContent>
+                        <SelectItem value="all">Alle priser</SelectItem>
+                        <SelectItem value="free">Gratis</SelectItem>
+                        <SelectItem value="paid">Betalt</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
