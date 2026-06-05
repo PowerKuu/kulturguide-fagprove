@@ -58,7 +58,7 @@ export default function EventCard({
                 </CardContent>
 
                 <CardFooter className="flex flex-col items-start gap-2 p-3 h-full">
-                    <p className="line-clamp-2 text-lg font-semibold">{event.title}</p>
+                    <p className="line-clamp-2 min-h-[2lh] text-lg font-semibold">{event.title}</p>
 
                     <div className="flex flex-wrap mt-auto gap-1">
                         <Badge variant="outline" className="text-xs">

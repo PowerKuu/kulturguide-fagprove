@@ -79,8 +79,8 @@ async function main() {
         {
             title: "Jazz under Stjernene",
             price: 349,
-            location: "Sentralen, Oslo",
-            description: "En intim kveld med norsk samtidsjazz i historiske lokaler.",
+            location: "USF Verftet, Bergen",
+            description: "En intim kveld med norsk samtidsjazz ved sjøkanten på Verftet.",
             startDate: at(7),
             endDate: at(7, 23),
             categoryId: konsert.id,
@@ -99,8 +99,8 @@ async function main() {
         {
             title: "Indie-kveld: Lokale Helter",
             price: 199,
-            location: "Blå, Oslo",
-            description: "Fire fremadstormende indieband fra Østlandet på én scene.",
+            location: "Det Akademiske Kvarter, Bergen",
+            description: "Fire fremadstormende indieband fra Vestlandet på én scene.",
             startDate: at(3, 20),
             endDate: at(4, 1),
             categoryId: konsert.id,
@@ -119,7 +119,7 @@ async function main() {
         {
             title: "Improshow: Helt på Sparket",
             price: 220,
-            location: "Det Andre Teatret, Oslo",
+            location: "Cornerteateret, Bergen",
             description: "Improvisert komedie der publikum bestemmer handlingen.",
             startDate: at(5, 20),
             endDate: at(5, 22),
@@ -129,7 +129,7 @@ async function main() {
         {
             title: "Svanesjøen - Ballett",
             price: 680,
-            location: "Operaen, Oslo",
+            location: "Ole Bull Scene, Bergen",
             description: "Nasjonalballetten fremfører Tsjajkovskijs tidløse mesterverk.",
             startDate: at(30, 18),
             endDate: at(30, 21),
@@ -137,10 +137,10 @@ async function main() {
             featured: false
         },
         {
-            title: "Øyafestivalen",
+            title: "Nattjazz",
             price: 1290,
-            location: "Tøyenparken, Oslo",
-            description: "Tre dager med musikk, mat og bærekraft midt i Oslo.",
+            location: "USF Verftet, Bergen",
+            description: "Ti dager med jazz fra hele verden ved Verftet i Bergen.",
             startDate: at(45, 12),
             endDate: at(48, 23),
             categoryId: festival.id,
@@ -157,10 +157,10 @@ async function main() {
             featured: false
         },
         {
-            title: "Matstreif - Matfestival",
+            title: "Bergen Matfestival",
             price: 0,
-            location: "Rådhusplassen, Oslo",
-            description: "Gratis matfestival med lokale produsenter fra hele landet.",
+            location: "Bryggen, Bergen",
+            description: "Gratis matfestival med lokale produsenter fra Vestlandet.",
             startDate: at(40, 11),
             endDate: at(41, 18),
             categoryId: festival.id,
@@ -169,8 +169,8 @@ async function main() {
         {
             title: "Vinterlyd - Akustisk Aften",
             price: 275,
-            location: "Røros Kirke, Røros",
-            description: "Stemningsfull akustisk konsert i vakre Røros kirke. (Avholdt)",
+            location: "Korskirken, Bergen",
+            description: "Stemningsfull akustisk konsert i vakre Korskirken i Bergen. (Avholdt)",
             startDate: at(-20, 19),
             endDate: at(-20, 21),
             categoryId: konsert.id,
