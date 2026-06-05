@@ -1,4 +1,4 @@
-# Bergen Kulturguide – Fagprøve: Planlegging
+# Bergen Kulturguide - Fagprøve: Planlegging
 
 ## Oppdrag
 Bergen Kulturguide ønsker en moderne webapplikasjon med oversikt over kulturarrangementer i Bergen.
@@ -15,15 +15,15 @@ Bergen Kulturguide ønsker en moderne webapplikasjon med oversikt over kulturarr
 - Responsivt design på alle skjermstørrelser
 
 ## Tech stack
-- **Next.js** – React-rammeverk
-- **TypeScript** – typer
-- **Tailwind CSS** – styling
-- **shadcn/ui** – komponentbibliotek / designsystem
-- **Prisma** – ORM og databasemodellering
-- **PostgreSQL** – database (med `pgvector`-utvidelsen for vektorsøk)
-- **Better Auth** – autentisering
-- **Cloudflare R2** – objektlagring for bilder
-- **Zod** – validering av input
+- **Next.js** - React-rammeverk
+- **TypeScript** - typer
+- **Tailwind CSS** - styling
+- **shadcn/ui** - komponentbibliotek / designsystem
+- **Prisma** - ORM og databasemodellering
+- **PostgreSQL** - database (med `pgvector`-utvidelsen for vektorsøk)
+- **Better Auth** - autentisering
+- **Cloudflare R2** - objektlagring for bilder
+- **Zod** - validering av input
 - **Vercel AI gateway** - For å koble opp mot AI modeller
 
 ## Admin-grensesnitt
@@ -134,10 +134,10 @@ model Contact {
 ## Miljøvariabler
 Følgende secrets/konfig håndteres via `.env` (og settes i produksjon på VPS):
 
-- `DATABASE_URL` – tilkobling til PostgreSQL
-- `BETTER_AUTH_SECRET` – secret for Better Auth
-- `AI_GATEWAY_API_KEY` – Vercel AI gateway for embedding
-- `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` – Cloudflare R2
+- `DATABASE_URL` - tilkobling til PostgreSQL
+- `BETTER_AUTH_SECRET` - secret for Better Auth
+- `AI_GATEWAY_API_KEY` - Vercel AI gateway for embedding
+- `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` - Cloudflare R2
 
 ## Drift og ressurser
 
@@ -151,15 +151,15 @@ Følgende secrets/konfig håndteres via `.env` (og settes i produksjon på VPS):
 Applikasjonen deployes på egen VPS hos **OVH** med **Docker**.
 
 ## Estimat
-- Oppsett, database og autentisering (Next.js, Prisma, pgvector, Better Auth): 4–6 timer
-- Admin-grensesnitt (dashboard, CRUD for arrangementer og kategorier, brukeradministrasjon): 9–10 timer
-- Offentlige sider (forside, detaljeside, header/navigasjon/footer): 4–6 timer
-- Søk og filtrering (embedding, cosine similarity, pris/kategori, favoritter): 5–6 timer
-- Bildehåndtering og kontaktskjema (R2-opplasting, validering, feilhåndtering): 3–4 timer
-- Universell utforming og responsivitet: 2–3 timer
-- Deployment, testing (Docker, OVH VPS, egenvurdering): 1–3 timer
+- Oppsett, database og autentisering (Next.js, Prisma, pgvector, Better Auth): 4-6 timer
+- Admin-grensesnitt (dashboard, CRUD for arrangementer og kategorier, brukeradministrasjon): 9-10 timer
+- Offentlige sider (forside, detaljeside, header/navigasjon/footer): 4-6 timer
+- Søk og filtrering (embedding, cosine similarity, pris/kategori, favoritter): 5-6 timer
+- Bildehåndtering og kontaktskjema (R2-opplasting, validering, feilhåndtering): 3-4 timer
+- Universell utforming og responsivitet: 2-3 timer
+- Deployment, testing (Docker, OVH VPS, egenvurdering): 1-3 timer
 
-Summert blir dette omtrent 28–38 timer
+Summert blir dette omtrent 28-38 timer
 
 ## Sparringspartnere
 AI og kollegaer som Kristian, Sindre og Sindre M.

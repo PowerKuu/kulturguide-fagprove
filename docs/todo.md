@@ -1,4 +1,4 @@
-# Bergen Kulturguide – Fagprøve: TODO
+# Bergen Kulturguide - Fagprøve: TODO
 
 - [] Oppsett, database og autentisering (Next.js, Prisma, pgvector, Better Auth)
 - [] Admin-grensesnitt (dashboard, CRUD for arrangementer og kategorier, brukeradministrasjon)
