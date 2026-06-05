@@ -35,8 +35,8 @@ export default function EventCard({
     const { favorites, toggleFavorite } = useFavorites()
 
     return (
-        <Link href={`/events/${event.id}`} className="w-full">
-            <Card className="group cursor-pointer overflow-hidden gap-0 pt-0 w-full">
+        <Link href={`/events/${event.id}`} className="w-full h-full">
+            <Card className="group cursor-pointer overflow-hidden gap-0 pt-0 w-full h-full">
                 <CardContent className="relative aspect-square p-0">
                     {firstImageId ? (
                         <Image src={getFileUrl(firstImageId)} alt={alt} fill className="object-cover object-top" />
@@ -60,7 +60,7 @@ export default function EventCard({
                 <CardFooter className="flex flex-col items-start gap-2 p-3 h-full">
                     <p className="line-clamp-2 min-h-[2lh] text-lg font-semibold">{event.title}</p>
 
-                    <div className="flex flex-wrap mt-auto gap-1">
+                    <div className="flex flex-wrap gap-1">
                         <Badge variant="outline" className="text-xs">
                             <Calendar className="mr-1 h-3 w-3" />
                             {format(new Date(event.startDate), "MMM d, yyyy", { locale: nb })}
@@ -72,7 +72,7 @@ export default function EventCard({
                         </Badge>
                     </div>
                     {event.description && <p className="line-clamp-2">{event.description}</p>}
-                    <div className="w-full flex justify-between items-center mt-3">
+                    <div className="w-full flex justify-between items-center mt-auto pt-3">
                         <div className="flex items-center">
                             <Button variant="outline" size="sm">
                                 Se detaljer
