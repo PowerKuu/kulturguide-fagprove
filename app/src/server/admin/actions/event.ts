@@ -5,7 +5,7 @@ import { prisma } from "@/server/database/prisma"
 import { embedText, insertEmbedding, joinEmbeddingText } from "@/server/embedding/embedding"
 
 export async function getEvents() {
-    requireAdmin()
+    await requireAdmin()
     return prisma.event.findMany({
         orderBy: {
             createdAt: "desc"
@@ -17,7 +17,7 @@ export async function getEvents() {
 }
 
 export async function createEvent(event: Prisma.EventCreateInput) {
-    requireAdmin()
+    await requireAdmin()
     const newEvent = await prisma.event.create({
         data: event
     })
@@ -28,7 +28,7 @@ export async function createEvent(event: Prisma.EventCreateInput) {
 }
 
 export async function updateEvent(id: string, event: Prisma.EventUpdateInput) {
-    requireAdmin()
+    await requireAdmin()
     const updatedEvent = await prisma.event.update({
         where: { id },
         data: event
@@ -40,7 +40,7 @@ export async function updateEvent(id: string, event: Prisma.EventUpdateInput) {
 }
 
 export async function deleteEvent(id: string) {
-    requireAdmin()
+    await requireAdmin()
     return prisma.event.delete({
         where: { id }
     })

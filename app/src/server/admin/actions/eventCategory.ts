@@ -5,7 +5,7 @@ import { prisma } from "@/server/database/prisma"
 import { insertEmbedding, joinEmbeddingText } from "@/server/embedding/embedding"
 
 export async function getEventCategories() {
-    requireAdmin()
+    await requireAdmin()
     return prisma.eventCategory.findMany({
         orderBy: {
             createdAt: "asc"
@@ -14,14 +14,14 @@ export async function getEventCategories() {
 }
 
 export async function createEventCategory(category: Prisma.EventCategoryCreateInput) {
-    requireAdmin()
+    await requireAdmin()
     return prisma.eventCategory.create({
         data: category
     })
 }
 
 export async function updateEventCategory(id: string, category: Prisma.EventCategoryUpdateInput) {
-    requireAdmin()
+    await requireAdmin()
     return prisma.eventCategory.update({
         where: { id },
         data: category
@@ -29,7 +29,7 @@ export async function updateEventCategory(id: string, category: Prisma.EventCate
 }
 
 export async function deleteEventCategory(id: string) {
-    requireAdmin()
+    await requireAdmin()
     return prisma.eventCategory.delete({
         where: { id }
     })

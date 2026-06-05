@@ -4,7 +4,7 @@ import { requireAdmin } from "@/server/auth/guard"
 import { prisma } from "@/server/database/prisma"
 
 export async function getContact() {
-    requireAdmin()
+    await requireAdmin()
 
     return prisma.contact.findMany({
         orderBy: {
