@@ -4,7 +4,7 @@ function escapeHtml(str: string) {
 
 export const emailTemplates = {
     resetPassword: (resetUrl: string) => ({
-        subject: "Plagg - Reset your password",
+        subject: "Kulturguide - Reset your password",
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2>Reset Your Password</h2>
@@ -26,7 +26,7 @@ export const emailTemplates = {
     }),
 
     verifyEmail: (verificationUrl: string) => ({
-        subject: "Plagg - Verify your email",
+        subject: "Kulturguide - Verify your email",
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2>Verify Your Email Address</h2>
@@ -48,7 +48,7 @@ export const emailTemplates = {
     }),
 
     confirmDeletion: (code: string) => ({
-        subject: "Plagg - Bekreft sletting av konto",
+        subject: "Kulturguide - Bekreft sletting av konto",
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <h2 style="color: #dc2626;">Slett kontoen din</h2>

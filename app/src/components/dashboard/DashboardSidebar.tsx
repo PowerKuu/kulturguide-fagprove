@@ -54,7 +54,7 @@ export function DashboardSidebar() {
             <SidebarHeader>
                 <Link href="/" className="flex items-center gap-2 px-2 py-2">
                     <AppLogo width={28} height={27} />
-                    <span className="text-lg font-bold">Plagg</span>
+                    <span className="text-lg font-bold">Kulturguide</span>
                 </Link>
             </SidebarHeader>
             <SidebarContent>
