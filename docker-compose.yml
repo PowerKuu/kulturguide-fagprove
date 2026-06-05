@@ -24,7 +24,7 @@ services:
             retries: 5
         ports:
             - "${POSTGRES_PORT:-8765}:5432"
-    app:
+    kulturguide-app:
         build:
             context: ./app
             dockerfile: Dockerfile
@@ -47,7 +47,7 @@ services:
         networks:
             - default
             - proxy
-    dozzle:
+    kulturguide-dozzle:
         image: amir20/dozzle:latest
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
