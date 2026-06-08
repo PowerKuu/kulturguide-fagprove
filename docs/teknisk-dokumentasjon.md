@@ -1,0 +1,1 @@
+Se [README.md](../README.md) for teknisk dokumentasjon :D
